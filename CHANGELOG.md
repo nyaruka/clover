@@ -1,73 +1,56 @@
-v0.5.1 (2026-06-23)
--------------------------
+## v0.5.1 (2026-06-23)
  * Merge pull request #15 from nyaruka/update-deps
  * Update deps
 
-v0.5.0 (2026-06-22)
--------------------------
+## v0.5.0 (2026-06-22)
  * Require an admin password instead of shipping a default
  * Improve container-readiness
 
-v0.4.2 (2026-05-18)
--------------------------
+## v0.4.2 (2026-05-18)
  * Remove the transitional legacy 8081 listener
 
-v0.4.1 (2026-05-18)
--------------------------
+## v0.4.1 (2026-05-18)
  * Mark workspace as safe git directory before goreleaser
 
-v0.4.0 (2026-05-18)
--------------------------
+## v0.4.0 (2026-05-18)
  * Move default port from 8081 to 8060 with transitional dual listener
  * Update Go, deps, GitHub Actions; add review and CLA workflows
 
-v0.3.1 (2024-06-05)
--------------------------
+## v0.3.1 (2024-06-05)
  * Fix goreleaser action config
 
-v0.3.0 (2024-06-05)
--------------------------
+## v0.3.0 (2024-06-05)
  * Update go to 1.22 and update  deps
 
-v0.2.1 (2023-12-04)
--------------------------
+## v0.2.1 (2023-12-04)
  * Make ARM build
 
-v0.2.0 (2023-10-16)
--------------------------
+## v0.2.0 (2023-10-16)
  * Update deps
  * Replace logrus use by slog
 
-v0.1.8
-----------
+## v0.1.8 (2020-08-28)
  * fix goreleaser
 
-v0.1.7
-----------
+## v0.1.7 (2020-08-28)
  * Support matching urn with or without plus
 
-v0.1.6
-----------
+## v0.1.6 (2018-08-28)
  * add admin interface for adding mappings
 
-v0.1.5
-----------
+## v0.1.5 (2018-08-27)
  * change receive endpoint to be /i/uuid/receive
 
-v0.1.4
-----------
+## v0.1.4 (2018-08-27)
  * fix tests
 
-v0.1.3
-----------
+## v0.1.3 (2018-08-27)
  * cache interchanges for a minute
  * make sure keyword checking is case insensitive
 
-v0.1.2
-----------
+## v0.1.2 (2018-08-24)
  * deternmine version from goreleaser
 
-v0.1.1
-----------
+## v0.1.1 (2018-08-24)
  * fix executable name
 
