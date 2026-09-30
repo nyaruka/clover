@@ -1,4 +1,4 @@
-module github.com/nyaruka/rp-clover
+module github.com/nyaruka/clover
 
 go 1.26.0
 

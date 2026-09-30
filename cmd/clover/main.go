@@ -12,8 +12,8 @@ import (
 
 	"github.com/getsentry/sentry-go"
 	_ "github.com/lib/pq"
-	clover "github.com/nyaruka/rp-clover"
-	"github.com/nyaruka/rp-clover/runtime"
+	clover "github.com/nyaruka/clover"
+	"github.com/nyaruka/clover/runtime"
 	slogmulti "github.com/samber/slog-multi"
 	slogsentry "github.com/samber/slog-sentry/v2"
 )
