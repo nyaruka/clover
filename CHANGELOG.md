@@ -1,3 +1,7 @@
+## v26.3.1 (2026-10-01)
+ * Update to go 1.27
+ * Update dependencies
+
 ## v26.3.0 (2026-10-01)
  * Move the module to /v26
  * Replace the built-in Sentry integration with hooks
