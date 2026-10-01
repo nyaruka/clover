@@ -14,8 +14,8 @@ type errorResponse struct {
 
 // dataResponse is our payload for data responses
 type dataResponse struct {
-	Message string      `json:"message"`
-	Data    any `json:"data"`
+	Message string `json:"message"`
+	Data    any    `json:"data"`
 }
 
 func writeDataResponse(ctx context.Context, w http.ResponseWriter, statusCode int, message string, data any) error {
