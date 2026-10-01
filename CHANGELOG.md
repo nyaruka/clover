@@ -1,4 +1,4 @@
-## v0.5.2 (2026-10-01)
+## v26.3.0 (2026-10-01)
  * Move the module to /v26
  * Replace the built-in Sentry integration with hooks
  * Rename module and binary to clover
