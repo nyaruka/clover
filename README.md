@@ -12,19 +12,15 @@ Usage of clover:
   -address string
     	the address clover will listen on, empty means all interfaces
   -db string
-    	the connection string for our database (default "postgres://localhost/clover_test?sslmode=disable")
-  -debug-conf
-    	print where config values are coming from
+    	the connection string for our database (default "postgres://clover_test:temba@localhost/clover_test?sslmode=disable")
   -help
     	print usage information
   -log-level string
-    	the log level, one of error, warn, info, debug (default "info")
+    	the log level, one of error, warn, info, debug (default "INFO")
   -password string
     	the password for the admin user (required)
   -port int
     	the port clover will listen on (default 8060)
-  -sentry-dsn string
-    	the sentry configuration to log errors to, if any
   -version string
     	the version being run (default "Dev")
 
@@ -34,6 +30,5 @@ Environment variables:
                             CLOVER_LOG_LEVEL - string
                              CLOVER_PASSWORD - string
                                  CLOVER_PORT - int
-                           CLOVER_SENTRY_DSN - string
                               CLOVER_VERSION - string
 ```
