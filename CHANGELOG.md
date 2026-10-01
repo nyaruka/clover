@@ -1,3 +1,12 @@
+## v0.5.2 (2026-10-01)
+ * Move the module to /v26
+ * Replace the built-in Sentry integration with hooks
+ * Rename module and binary to clover
+ * Remove codecov integration
+ * Update GitHub Actions, including the CLA Assistant action, to versions that support Node.js 24
+ * Use Opus 4.8 for PR reviews
+ * Update .gitignore to cover .devcontainer and AI agent files
+
 ## v0.5.1 (2026-06-23)
  * Merge pull request #15 from nyaruka/update-deps
  * Update deps
