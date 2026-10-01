@@ -16,7 +16,7 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
-	"github.com/nyaruka/clover/runtime"
+	"github.com/nyaruka/clover/v26/runtime"
 )
 
 // shutdownTimeout bounds how long we wait for in-flight requests to drain on

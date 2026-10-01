@@ -12,7 +12,7 @@ import (
 	"time"
 
 	"github.com/go-chi/chi/v5"
-	"github.com/nyaruka/clover/models"
+	"github.com/nyaruka/clover/v26/models"
 )
 
 // handles an interchange request
