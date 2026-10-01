@@ -1,7 +1,7 @@
 version: 2
 builds:
-  - main: ./cmd/rp-clover/main.go
-    binary: rp-clover
+  - main: ./cmd/clover/main.go
+    binary: clover
     goos:
       - darwin
       - linux

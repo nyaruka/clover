@@ -11,8 +11,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/nyaruka/rp-clover/models"
-	"github.com/nyaruka/rp-clover/runtime"
+	"github.com/nyaruka/clover/models"
+	"github.com/nyaruka/clover/runtime"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -9,7 +9,7 @@ import (
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
-	"github.com/nyaruka/rp-clover/models"
+	"github.com/nyaruka/clover/models"
 )
 
 func newAdminRouter(s *Server) *chi.Mux {

@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/jmoiron/sqlx"
-	"github.com/nyaruka/rp-clover/migrations"
+	"github.com/nyaruka/clover/migrations"
 )
 
 // Runtime holds the configuration and live service handles used across the clover server.

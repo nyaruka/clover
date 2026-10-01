@@ -7,7 +7,7 @@ import (
 	"testing"
 
 	"github.com/jmoiron/sqlx"
-	"github.com/nyaruka/rp-clover/migrations"
+	"github.com/nyaruka/clover/migrations"
 	"github.com/stretchr/testify/assert"
 )
 
