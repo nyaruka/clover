@@ -56,11 +56,14 @@ func NewServer(rt *runtime.Runtime, fs http.FileSystem) *Server {
 	staticDir := filepath.Join(workDir, "./static")
 	server.addFileServer(router, "/", http.Dir(staticDir))
 
-	// and our admin views
-	router.Mount("/admin", newAdminRouter(server))
+	// routes are prefixed /vr/ (public) or /vi/ (internal) so they can be routed by path prefix
+	receive := server.newHandlerFunc(handleInterchange)
+	router.Mount("/vr/i/{interchangeUUID:[0-9a-fA-F-]{36}}/receive", receive)
+	router.Mount("/vi/admin", newAdminRouter(server))
 
-	// and our handler view
-	router.Mount("/i/{interchangeUUID:[0-9a-fA-F-]{36}}/receive", server.newHandlerFunc(handleInterchange))
+	// deprecated unprefixed aliases of the above
+	router.Mount("/i/{interchangeUUID:[0-9a-fA-F-]{36}}/receive", receive)
+	router.Mount("/admin", newAdminRouter(server))
 
 	return server
 }
