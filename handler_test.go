@@ -74,20 +74,20 @@ func TestHandler(t *testing.T) {
 	}{
 		{"/i/5fb66333-7f8c-47aa-9aa5-bfee37b79b22/receive", nil, 0, "", "", 400, "missing sender"},
 		{"/i/5fb66333-7f8c-47aa-9aa5-bfee37b79b11/receive", nil, 0, "", "", 404, "interchange not found"},
-		{"/vr/i/5fb66333-7f8c-47aa-9aa5-bfee37b79b22/receive", nil, 0, "", "", 400, "missing sender"},
-		{"/vr/i/5fb66333-7f8c-47aa-9aa5-bfee37b79b11/receive", nil, 0, "", "", 404, "interchange not found"},
+		{"/vr/i/5fb66333-7f8c-47aa-9aa5-bfee37b79b22/receive", nil, 0, "", "", 404, "not found"},
+		{"/vr/i/5fb66333-7f8c-47aa-9aa5-bfee37b79b22/receive?sender=2065551212&message=test", nil, 0, "", "", 404, "not found"},
 		{"/i/5fb66333-7f8c-47aa-9aa5-bfee37b79b22/receive?sender=2065551212&message=test", nil, 200, "handled", "/handler1?sender=2065551212&message=test", 200, "handled"},
 		{"/i/5fb66333-7f8c-47aa-9aa5-bfee37b79b22/receive?sender=2065551212&message=test&other=foo", nil, 200, "handled", "/handler1?sender=2065551212&message=test&other=foo", 200, "handled"},
 		{"/i/5fb66333-7f8c-47aa-9aa5-bfee37b79b22/receive?sender=2065551212&message=test", nil, 400, "downstream error", "/handler1?sender=2065551212&message=test", 400, "downstream error"},
 		{"/i/5fb66333-7f8c-47aa-9aa5-bfee37b79b22/receive?sender=2065551212&message=test", nil, 500, "downstream server error", "/handler1?sender=2065551212&message=test", 500, "downstream server error"},
 		{"/i/5fb66333-7f8c-47aa-9aa5-bfee37b79b22/receive", url.Values{"sender": []string{"2065551212"}, "message": []string{"hello"}}, 200, "handled post", "/handler1", 200, "handled post"},
 
-		{"/vr/i/5fb66333-7f8c-47aa-9aa5-bfee37b79b22/receive?sender=2065551212&message=TWO", nil, 200, "handled", "/handler2?sender=2065551212&message=TWO", 200, "handled"},
-		{"/vr/i/5fb66333-7f8c-47aa-9aa5-bfee37b79b22/receive?sender=%2B2065551212&message=other", nil, 200, "handled", "/handler2?sender=%2B2065551212&message=other", 200, "handled"},
-		{"/vr/i/5fb66333-7f8c-47aa-9aa5-bfee37b79b22/receive?sender=2065551212&message=other", nil, 200, "handled", "/handler2?sender=2065551212&message=other", 200, "handled"},
-		{"/vr/i/5fb66333-7f8c-47aa-9aa5-bfee37b79b22/receive?sender=2065551213&message=other", nil, 200, "handled", "/handler1?sender=2065551213&message=other", 200, "handled"},
-		{"/vr/i/5fb66333-7f8c-47aa-9aa5-bfee37b79b22/receive?sender=2065551212&message=one", nil, 200, "handled", "/handler1?sender=2065551212&message=one", 200, "handled"},
-		{"/vr/i/5fb66333-7f8c-47aa-9aa5-bfee37b79b22/receive?sender=2065551212&message=other", nil, 200, "handled", "/handler1?sender=2065551212&message=other", 200, "handled"},
+		{"/i/5fb66333-7f8c-47aa-9aa5-bfee37b79b22/receive?sender=2065551212&message=TWO", nil, 200, "handled", "/handler2?sender=2065551212&message=TWO", 200, "handled"},
+		{"/i/5fb66333-7f8c-47aa-9aa5-bfee37b79b22/receive?sender=%2B2065551212&message=other", nil, 200, "handled", "/handler2?sender=%2B2065551212&message=other", 200, "handled"},
+		{"/i/5fb66333-7f8c-47aa-9aa5-bfee37b79b22/receive?sender=2065551212&message=other", nil, 200, "handled", "/handler2?sender=2065551212&message=other", 200, "handled"},
+		{"/i/5fb66333-7f8c-47aa-9aa5-bfee37b79b22/receive?sender=2065551213&message=other", nil, 200, "handled", "/handler1?sender=2065551213&message=other", 200, "handled"},
+		{"/i/5fb66333-7f8c-47aa-9aa5-bfee37b79b22/receive?sender=2065551212&message=one", nil, 200, "handled", "/handler1?sender=2065551212&message=one", 200, "handled"},
+		{"/i/5fb66333-7f8c-47aa-9aa5-bfee37b79b22/receive?sender=2065551212&message=other", nil, 200, "handled", "/handler1?sender=2065551212&message=other", 200, "handled"},
 	}
 
 	for i, tc := range tcs {

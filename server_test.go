@@ -127,7 +127,7 @@ func TestMapping(t *testing.T) {
 	defer s.Stop()
 
 	// set up our config, replacing our server with our test server
-	err := makeTestRequest("/admin", http.MethodPost, url.Values{"config": []string{testConfig}}, true, 200, "configuration saved")
+	err := makeTestRequest("/vi/admin", http.MethodPost, url.Values{"config": []string{testConfig}}, true, 200, "configuration saved")
 	assert.NoError(t, err)
 
 	tcs := []struct {
