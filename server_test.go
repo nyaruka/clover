@@ -108,6 +108,11 @@ func TestEndpoints(t *testing.T) {
 		{"/admin", http.MethodPost, url.Values{"config": []string{"arst"}}, true, 200, "invalid character"},
 		{"/admin", http.MethodPost, url.Values{"config": []string{testConfig}}, true, 200, "configuration saved"},
 		{"/admin", http.MethodPost, url.Values{"config": []string{"[]"}}, true, 200, "configuration saved"},
+		{"/vi/admin", http.MethodGet, nil, false, 401, "Unauthorized"},
+		{"/vi/admin", http.MethodGet, nil, true, 200, "Clover Configuration"},
+		{"/vi/admin", http.MethodPost, url.Values{"config": []string{"arst"}}, true, 200, "invalid character"},
+		{"/vi/admin", http.MethodPost, url.Values{"config": []string{testConfig}}, true, 200, "configuration saved"},
+		{"/vi/admin", http.MethodPost, url.Values{"config": []string{"[]"}}, true, 200, "configuration saved"},
 		{"/foo", http.MethodGet, nil, false, 404, "not found"},
 	}
 
@@ -136,9 +141,9 @@ func TestMapping(t *testing.T) {
 	}{
 		{"/admin/5fb66333-7f8c-47aa-9aa5-bfee37b79b22/map", http.MethodDelete, 400, "missing", "5fb66333-7f8c-47aa-9aa5-bfee37b79b22", "tel:+12065551212", ""},
 		{"/admin/5fb66333-7f8c-47aa-9aa5-bfee37b79b22/map?urn=tel:%2B12065551212", http.MethodDelete, 200, "removed", "5fb66333-7f8c-47aa-9aa5-bfee37b79b22", "tel:+12065551212", ""},
-		{"/admin/5fb66333-7f8c-47aa-9aa5-bfee37b79b22/map?urn=tel:%2B12065551212&channel=557d3353-6b89-441a-aee5-8c398fd7a61f", http.MethodPost, 200, "created", "5fb66333-7f8c-47aa-9aa5-bfee37b79b22", "tel:+12065551212", "557d3353-6b89-441a-aee5-8c398fd7a61f"},
-		{"/admin/5fb66333-7f8c-47aa-9aa5-bfee37b79b22/map?urn=tel:%2B12065551212", http.MethodPost, 400, "channel not found", "5fb66333-7f8c-47aa-9aa5-bfee37b79b22", "tel:+12065551212", "557d3353-6b89-441a-aee5-8c398fd7a61f"},
-		{"/admin/5fb66333-7f8c-47aa-9aa5-bfee37b79b22/map?urn=tel:%2B12065551212", http.MethodDelete, 200, "removed", "5fb66333-7f8c-47aa-9aa5-bfee37b79b22", "tel:+12065551212", ""},
+		{"/vi/admin/5fb66333-7f8c-47aa-9aa5-bfee37b79b22/map?urn=tel:%2B12065551212&channel=557d3353-6b89-441a-aee5-8c398fd7a61f", http.MethodPost, 200, "created", "5fb66333-7f8c-47aa-9aa5-bfee37b79b22", "tel:+12065551212", "557d3353-6b89-441a-aee5-8c398fd7a61f"},
+		{"/vi/admin/5fb66333-7f8c-47aa-9aa5-bfee37b79b22/map?urn=tel:%2B12065551212", http.MethodPost, 400, "channel not found", "5fb66333-7f8c-47aa-9aa5-bfee37b79b22", "tel:+12065551212", "557d3353-6b89-441a-aee5-8c398fd7a61f"},
+		{"/vi/admin/5fb66333-7f8c-47aa-9aa5-bfee37b79b22/map?urn=tel:%2B12065551212", http.MethodDelete, 200, "removed", "5fb66333-7f8c-47aa-9aa5-bfee37b79b22", "tel:+12065551212", ""},
 	}
 
 	for i, tc := range tcs {
