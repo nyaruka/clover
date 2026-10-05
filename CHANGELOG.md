@@ -1,3 +1,7 @@
+## v26.3.2 (2026-10-05)
+ * Serve routes under /vr/ (public) and /vi/ (internal) prefixes, keeping old paths as aliases
+ * Bump the review model to Opus 5.5 and disable review progress tracking
+
 ## v26.3.1 (2026-10-01)
  * Update to go 1.27
  * Update dependencies
