@@ -8,7 +8,6 @@ import (
 	"strings"
 	"syscall"
 
-	_ "github.com/lib/pq"
 	clover "github.com/nyaruka/clover/v26"
 	"github.com/nyaruka/clover/v26/runtime"
 )

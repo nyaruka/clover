@@ -8,24 +8,23 @@ require (
 	github.com/jmoiron/sqlx v1.4.0
 	github.com/lib/pq v1.12.3
 	github.com/nyaruka/ezconf v0.8.0
-	github.com/stretchr/testify v1.11.1
+	github.com/nyaruka/gocommon v1.100.3
+	github.com/stretchr/testify v1.12.1
 )
 
 require (
-	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/fatih/structs v1.1.0 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.16 // indirect
 	github.com/go-playground/locales v0.14.2 // indirect
 	github.com/go-playground/universal-translator v0.18.2 // indirect
-	github.com/kr/pretty v0.3.1 // indirect
 	github.com/leodido/go-urn v1.5.0 // indirect
+	github.com/muir/list v1.2.1 // indirect
+	github.com/muir/sqltoken v0.5.2 // indirect
 	github.com/naoina/go-stringutil v0.1.0 // indirect
 	github.com/naoina/toml v0.1.1 // indirect
-	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
-	github.com/rogpeppe/go-internal v1.14.1 // indirect
+	github.com/vinovest/sqlx v1.7.2 // indirect
+	go.yaml.in/yaml/v3 v3.0.5 // indirect
 	golang.org/x/crypto v0.59.0 // indirect
 	golang.org/x/sys v0.50.0 // indirect
 	golang.org/x/text v0.44.0 // indirect
-	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
-	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
