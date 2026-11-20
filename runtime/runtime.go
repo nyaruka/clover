@@ -2,11 +2,13 @@ package runtime
 
 import (
 	"context"
+	"database/sql"
 	"fmt"
 	"time"
 
 	"github.com/jmoiron/sqlx"
 	"github.com/nyaruka/clover/v26/migrations"
+	"github.com/nyaruka/gocommon/dbutil"
 )
 
 // Runtime holds the configuration and live service handles used across the clover server.
@@ -19,11 +21,13 @@ type Runtime struct {
 func NewRuntime(cfg *Config) (*Runtime, error) {
 	rt := &Runtime{Config: cfg}
 
-	db, err := sqlx.Open("postgres", cfg.DB)
+	connector, err := dbutil.NewWriteConnector(cfg.DB)
 	if err != nil {
 		return nil, fmt.Errorf("error opening db: %w", err)
 	}
+	db := sqlx.NewDb(sql.OpenDB(connector), "postgres")
 	db.SetMaxOpenConns(4)
+	db.SetConnMaxLifetime(10 * time.Minute)
 	rt.DB = db
 
 	// short timeout just to confirm connectivity
