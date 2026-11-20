@@ -1,3 +1,6 @@
+## v26.3.5 (2026-11-20)
+ * Open database pool with a write connector and a connection max lifetime
+
 ## v26.3.4 (2026-11-20)
  * Add primary keys to all tables so they work with logical replication
  * Apply each migration and its version record in one transaction
