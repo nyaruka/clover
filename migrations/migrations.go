@@ -76,6 +76,19 @@ var (
 				interchange_uuid
 			)`,
 		},
+		{
+			// logical replication can only replicate UPDATE and DELETE on tables with a primary key.
+			// The existing UNIQUE constraints are kept because foreign keys depend on them, and
+			// swapping them out would mean dropping and revalidating those foreign keys.
+			version:     7,
+			description: "add primary keys",
+			sql: `
+			ALTER TABLE migrations ADD PRIMARY KEY (version);
+			ALTER TABLE channels ADD PRIMARY KEY (uuid);
+			ALTER TABLE interchanges ADD PRIMARY KEY (uuid);
+			ALTER TABLE urn_mappings ADD PRIMARY KEY USING INDEX urn_mappings_idx;
+			`,
+		},
 	}
 )
 
