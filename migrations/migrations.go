@@ -128,19 +128,25 @@ func apply(ctx context.Context, db *sqlx.DB, mig migration) error {
 
 	log.Info("applying migration")
 
-	_, err := db.ExecContext(ctx, mig.sql)
+	// apply the schema change and record it together, so a failure can't leave a migration
+	// applied but unrecorded and retried on every startup
+	tx, err := db.BeginTxx(ctx, nil)
 	if err != nil {
+		return fmt.Errorf("error starting migration transaction: %w", err)
+	}
+	defer tx.Rollback()
+
+	if _, err := tx.ExecContext(ctx, mig.sql); err != nil {
 		log.Error("error applying migration", "error", err)
 		return err
 	}
 
-	_, err = db.ExecContext(ctx, insertMigration, mig.version)
-	if err != nil {
+	if _, err := tx.ExecContext(ctx, insertMigration, mig.version); err != nil {
 		log.Error("error inserting migration record", "error", err)
 		return err
 	}
 
-	return nil
+	return tx.Commit()
 }
 
 // migrateLockID is a fixed key for the Postgres advisory lock that serializes
