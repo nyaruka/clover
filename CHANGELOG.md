@@ -1,3 +1,9 @@
+## v26.3.4 (2026-11-20)
+ * Add primary keys to all tables so they work with logical replication
+ * Apply each migration and its version record in one transaction
+ * Stop the review workflow adding Claude Code attribution
+ * Update dependencies and GitHub Action versions
+
 ## v26.3.3 (2026-10-05)
  * Make /i/{uuid}/receive the canonical public route, dropping the /vr/ mount
 

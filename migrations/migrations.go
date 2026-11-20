@@ -76,6 +76,19 @@ var (
 				interchange_uuid
 			)`,
 		},
+		{
+			// logical replication can only replicate UPDATE and DELETE on tables with a primary key.
+			// The existing UNIQUE constraints are kept because foreign keys depend on them, and
+			// swapping them out would mean dropping and revalidating those foreign keys.
+			version:     7,
+			description: "add primary keys",
+			sql: `
+			ALTER TABLE migrations ADD PRIMARY KEY (version);
+			ALTER TABLE channels ADD PRIMARY KEY (uuid);
+			ALTER TABLE interchanges ADD PRIMARY KEY (uuid);
+			ALTER TABLE urn_mappings ADD PRIMARY KEY USING INDEX urn_mappings_idx;
+			`,
+		},
 	}
 )
 
@@ -115,19 +128,25 @@ func apply(ctx context.Context, db *sqlx.DB, mig migration) error {
 
 	log.Info("applying migration")
 
-	_, err := db.ExecContext(ctx, mig.sql)
+	// apply the schema change and record it together, so a failure can't leave a migration
+	// applied but unrecorded and retried on every startup
+	tx, err := db.BeginTxx(ctx, nil)
 	if err != nil {
+		return fmt.Errorf("error starting migration transaction: %w", err)
+	}
+	defer tx.Rollback()
+
+	if _, err := tx.ExecContext(ctx, mig.sql); err != nil {
 		log.Error("error applying migration", "error", err)
 		return err
 	}
 
-	_, err = db.ExecContext(ctx, insertMigration, mig.version)
-	if err != nil {
+	if _, err := tx.ExecContext(ctx, insertMigration, mig.version); err != nil {
 		log.Error("error inserting migration record", "error", err)
 		return err
 	}
 
-	return nil
+	return tx.Commit()
 }
 
 // migrateLockID is a fixed key for the Postgres advisory lock that serializes
