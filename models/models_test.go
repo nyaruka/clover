@@ -479,3 +479,18 @@ func TestMappings(t *testing.T) {
 		}
 	}
 }
+
+func TestTablesHavePrimaryKeys(t *testing.T) {
+	db := setUp(t)
+
+	// logical replication can't replicate UPDATE or DELETE on a table without a primary key
+	var missing []string
+	err := db.Select(&missing, `
+		SELECT c.relname FROM pg_class c
+		JOIN pg_namespace n ON n.oid = c.relnamespace
+		WHERE n.nspname = current_schema() AND c.relkind = 'r'
+		AND NOT EXISTS (SELECT 1 FROM pg_constraint p WHERE p.conrelid = c.oid AND p.contype = 'p')
+		ORDER BY c.relname`)
+	assert.NoError(t, err)
+	assert.Empty(t, missing)
+}
